@@ -13,8 +13,23 @@ end.run_action(:run) if node['platform_family'] == "ubuntu"
 
 
 # firefox のインストール
-package "firefox" do
-	action :install
+case node['platform']
+when "ubuntu"
+        %w{
+                firefox fonts-ipaexfont
+        }.each do |package_name|
+                package "#{package_name}" do
+                        action :install
+                end
+        end
+when "centos"
+        %w{
+                firefox ipa-gothic-fonts
+        }.each do |package_name|
+                package "#{package_name}" do
+                        action :install
+                end
+        end
 end
 
 
