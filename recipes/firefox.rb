@@ -22,7 +22,7 @@ when "ubuntu"
                         action :install
                 end
         end
-when "centos"
+when "centos","amazon"
         %w{
                 firefox ipa-gothic-fonts
         }.each do |package_name|
@@ -39,7 +39,7 @@ when "ubuntu"
 	link "/usr/bin/firefox-bin" do
 		to "/usr/lib/firefox/firefox"
 	end
-when "centos"
+when "centos","amazon"
 	link "/usr/bin/firefox-bin" do
 		to "/usr/lib64/firefox/firefox"
 	end
@@ -48,7 +48,7 @@ end
 
 # X転送でFirefoxを起動できない問題を解決
 case node['platform']
-when "centos"
+when "centos","amazon"
         execute "dbus-uuidgen" do
                 command "/bin/dbus-uuidgen >> /var/lib/dbus/machine-id"
 		creates "/var/lib/dbus/machine-id"
