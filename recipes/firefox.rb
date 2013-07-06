@@ -48,7 +48,7 @@ end
 
 # X転送でFirefoxを起動できない問題を解決
 case node['platform']
-when "centos","amazon"
+when "centos"
         execute "dbus-uuidgen" do
                 command "/bin/dbus-uuidgen >> /var/lib/dbus/machine-id"
 		creates "/var/lib/dbus/machine-id"
